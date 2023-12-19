@@ -51,7 +51,10 @@ public class Estoque {
         return Objects.hash(id);
     }
 
-    public void atualizar(Integer quantidade) {
-        this.quantidade = quantidade;
+    public void adicionar(Integer quantidade) {
+        this.quantidade += quantidade;
+    }
+    public void diminuir(Integer quantidade) {
+        this.quantidade -= quantidade;
     }
 }
