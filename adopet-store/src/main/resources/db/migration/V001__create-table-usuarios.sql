@@ -28,5 +28,7 @@ INSERT INTO perfis VALUES(1, 'ROLE_ADMIN');
 INSERT INTO perfis VALUES(2, 'ROLE_COMPRADOR');
 
 INSERT INTO usuarios VALUES(1, 'Administrador', 'admin@email.com.br', '$2a$10$Y50UaMFOxteibQEYLrwuHeehHYfcoafCopUazP12.rqB41bsolF5.');
+INSERT INTO usuarios VALUES(2, 'Comprador', 'comprador@email.com.br', '$2a$10$Y50UaMFOxteibQEYLrwuHeehHYfcoafCopUazP12.rqB41bsolF5.');
 
 INSERT INTO usuarios_perfis values(1, 1);
+INSERT INTO usuarios_perfis values(2, 2);

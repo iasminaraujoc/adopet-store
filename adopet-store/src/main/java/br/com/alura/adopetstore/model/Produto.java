@@ -21,8 +21,7 @@ public class Produto {
     private String nome;
     private String descricao;
     private BigDecimal preco;
-    @OneToOne(cascade = CascadeType.ALL)
-    private Estoque estoque;
+    private Boolean ativo;
 
     public Produto(){}
 
@@ -30,7 +29,7 @@ public class Produto {
         this.nome = dto.nome();
         this.descricao = dto.descricao();
         this.preco = dto.preco();
-        this.estoque = new Estoque(dto.estoqueInicial(), this);
+        this.ativo = true;
     }
 
     public Long getId() {
@@ -47,6 +46,13 @@ public class Produto {
 
     public BigDecimal getPreco() {
         return preco;
+    }
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void desativar(){
+        this.ativo = false;
     }
 
     @Override

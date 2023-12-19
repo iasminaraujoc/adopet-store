@@ -14,10 +14,10 @@ import java.util.Objects;
 @Table(name = "estoques")
 public class Estoque {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer quantidade;
-    @OneToOne(mappedBy = "estoque")
-    @MapsId
+    @OneToOne
     private Produto produto;
 
     public Estoque(){}
@@ -49,5 +49,9 @@ public class Estoque {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public void atualizar(Integer quantidade) {
+        this.quantidade = quantidade;
     }
 }

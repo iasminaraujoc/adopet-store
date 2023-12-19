@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
-@Table(name = "itens_pedido")
+@Table(name = "itens_pedidos")
 public class ItemPedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,6 +50,10 @@ public class ItemPedido {
 
     public BigDecimal getPrecoUnitario() {
         return precoUnitario;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
     @Override

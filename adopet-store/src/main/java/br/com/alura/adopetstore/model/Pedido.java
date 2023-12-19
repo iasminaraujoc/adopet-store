@@ -32,6 +32,7 @@ public class Pedido {
     public Pedido(List<ItemPedido> itens, Usuario usuario) {
         this.data = LocalDate.now();
         this.itens = itens;
+        this.itens.forEach(i -> i.setPedido(this));
         this.usuario = usuario;
     }
 
