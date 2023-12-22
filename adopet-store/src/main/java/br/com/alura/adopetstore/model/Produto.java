@@ -1,12 +1,12 @@
 package br.com.alura.adopetstore.model;
 
 import br.com.alura.adopetstore.dto.CadastroProdutoDTO;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 import java.math.BigDecimal;
@@ -20,6 +20,8 @@ public class Produto {
     private Long id;
     private String nome;
     private String descricao;
+    @Enumerated(EnumType.STRING)
+    private Categoria categoria;
     private BigDecimal preco;
     private Boolean ativo;
 
@@ -28,6 +30,7 @@ public class Produto {
     public Produto(CadastroProdutoDTO dto){
         this.nome = dto.nome();
         this.descricao = dto.descricao();
+        this.categoria = Categoria.valueOf(dto.categoria().toUpperCase());
         this.preco = dto.preco();
         this.ativo = true;
     }
@@ -74,5 +77,9 @@ public class Produto {
                 "nome='" + nome + '\'' +
                 ", preco=" + preco +
                 '}';
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
     }
 }
