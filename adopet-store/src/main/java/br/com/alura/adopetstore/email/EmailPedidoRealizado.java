@@ -11,7 +11,7 @@ public class EmailPedidoRealizado {
     @Autowired
     private EnviadorEmail enviador;
 
-    @Async
+    @Async("asyncExecutor")
     public void enviar(PedidoDTO dto, Usuario usuario){
         enviador.enviarEmail(
                 "Pedido efetuado com sucesso na Adopet Store",
