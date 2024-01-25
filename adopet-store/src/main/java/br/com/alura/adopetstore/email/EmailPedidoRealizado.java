@@ -17,5 +17,6 @@ public class EmailPedidoRealizado {
                 "Pedido efetuado com sucesso na Adopet Store",
                 usuario.getEmail(),
                 "Olá! " + "!\n\nSeu pedido foi registrado. Itens: \n" + dto.itens());
+        System.out.println("Thread do email: " + Thread.currentThread().getName());
     }
 }
