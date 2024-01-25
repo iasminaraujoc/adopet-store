@@ -27,7 +27,7 @@ public class PedidoService {
     private EstoqueRepository estoqueRepository;
 
     @Transactional
-    public synchronized PedidoDTO cadastrar(CadastroPedidoDTO dto, Usuario usuario) {
+    public PedidoDTO cadastrar(CadastroPedidoDTO dto, Usuario usuario) {
         var itens = new ArrayList<ItemPedido>();
         for (var itemDto : dto.itens()) {
             var estoque = estoqueRepository.findByProdutoId(itemDto.produtoId());
