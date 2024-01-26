@@ -7,9 +7,11 @@ import br.com.alura.adopetstore.repository.EstoqueRepository;
 import br.com.alura.adopetstore.repository.PedidoRepository;
 import br.com.alura.adopetstore.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,19 +25,21 @@ public class RelatorioService {
     @Autowired
     private PedidoRepository pedidoRepository;
 
-    public RelatorioEstoque infoEstoque(){
+    @Async
+    public CompletableFuture<RelatorioEstoque> infoEstoque(){
         var produtosSemEstoque = estoqueRepository.produtosComEstoqueZerado()
                 .stream().map(ProdutoDTO::new)
                 .collect(Collectors.toList());
-        return new RelatorioEstoque(produtosSemEstoque);
+        return CompletableFuture.completedFuture(new RelatorioEstoque(produtosSemEstoque));
     }
 
-    public RelatorioFaturamento faturamentoObtido() {
+    @Async
+    public CompletableFuture<RelatorioFaturamento> faturamentoObtido() {
         var dataOntem = LocalDate.now().minusDays(1);
         var faturamentoTotal = pedidoRepository.faturamentoTotalDoDia(dataOntem);
 
         var estatisticas = pedidoRepository.faturamentoTotalDoDiaPorCategoria(dataOntem);
 
-        return new RelatorioFaturamento(faturamentoTotal, estatisticas);
+        return CompletableFuture.completedFuture(new RelatorioFaturamento(faturamentoTotal, estatisticas));
     }
 }
